@@ -8,3 +8,16 @@ We develop the algorithm for a autonomous vehicle to safely and actively interac
 The algorithm combines:
   -  A hierarchical prediction strategy that integrates data-driven human internal state inference with planning-based human motion prediction
   -  An Active motion planning algorithm for the autonomous vehicle to ensure safety against uncertain human motions
+
+# How to train inference module
+1. python ./gen_human_data.py
+-> Generate human driving data for training
+2. python ./train_inference/train_beta.py
+-> Train rationality inference module
+3. python ./train_inference/train_psi.py
+-> Train driving style inference module
+
+# How to run main code
+1. python ./main.py
+** After training the inference module, 'model_id' for each inference module should be changed accordingly.
+   
