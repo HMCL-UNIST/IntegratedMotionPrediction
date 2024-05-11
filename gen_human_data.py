@@ -24,13 +24,13 @@ from human_model.PlayerCost import *
 rd_width = 5
 rd_length = 40
 
-for trial in range(20000,30000):
+for trial in range(0,30000):
 
     ## Parameters for ILQR
     num_player = 2
     alpha_scale = 0.2
-    max_iteration = 50
-    tolerence = 2e-2
+    max_iteration = 100
+    tolerence = 1e-3
    
     ## Parameters for reciding horizon
     dt = 0.2
@@ -39,8 +39,8 @@ for trial in range(20000,30000):
     Nd = 1
     N_sim = 60
 
-    vH_lim = 2.5
-    vR_lim = 3
+    vH_lim = 15/3.6
+    vR_lim = 15/3.6
 
     ## Initial State
     xH_0 = [0.0, rd_width/2, 0.0, vH_lim]
@@ -98,7 +98,7 @@ for trial in range(20000,30000):
     '''
 
     #Attentive Human Cost
-    QH = np.diag([0, 500, 80 , 10, 0.0, 0.0, 0.0, 0.0])
+    QH = np.diag([0, 800, 80 , 10, 0.0, 0.0, 0.0, 0.0])
     RH = np.diag([0.5, 0.5])
     u_ref = np.zeros((2,1))
     Cost_Ref_A = ReferenceCost(0, ref_h, vH_lim, u_ref, x_dim, uH_dim, QH, RH) #0: Human_A, 1:Robot, 2:Human_D
@@ -111,14 +111,13 @@ for trial in range(20000,30000):
     Cost_RoadBoundary_bottom = SemiQuadraticCost(x_dim, uH_dim, 1, 0.5, False)
 
     Car_H_cost_A = PlayerCost()
-    Car_H_cost_A.add_cost(Cost_Ref_A, 'xu', 5000)
-    Car_H_cost_A.add_cost(Cost_Collision_A, 'x', 80000)
-    Car_H_cost_A.add_cost(Cost_RoadBoundary_top, 'x', 80000)
-    Car_H_cost_A.add_cost(Cost_RoadBoundary_bottom, 'x', 80000)
+    Car_H_cost_A.add_cost(Cost_Ref_A, 'xu', 1e5)
+    Car_H_cost_A.add_cost(Cost_Collision_A, 'x', 2e5)
+    Car_H_cost_A.add_cost(Cost_RoadBoundary_top, 'x', 8e5)
+    Car_H_cost_A.add_cost(Cost_RoadBoundary_bottom, 'x', 8e5)
 
     #Distracted Human Cost
-    xHdims = np.array(xH_dims)
-    QH = np.diag([0, 500 , 80 , 10])
+    QH = np.diag([0, 800 , 80 , 10])
     RH = np.diag([0.5, 0.5])
     Cost_Ref_D = ReferenceCost(0, ref_h, vH_lim, u_ref, xH_dim, uH_dim, QH, RH) #0: Human, 1:Robot
     Cost_RoadBoundary_top = SemiQuadraticCost(xH_dim, uH_dim, 1, rd_width-0.5, True)
@@ -126,9 +125,9 @@ for trial in range(20000,30000):
     Cost_vel_max = SemiQuadraticCost(xH_dim, uH_dim, 3, 0.0, False)
 
     Car_H_cost_D = PlayerCost()
-    Car_H_cost_D.add_cost(Cost_Ref_D, 'xu', 80000)
-    Car_H_cost_D.add_cost(Cost_RoadBoundary_top, 'x', 80000)
-    Car_H_cost_D.add_cost(Cost_RoadBoundary_bottom, 'x', 80000)
+    Car_H_cost_D.add_cost(Cost_Ref_D, 'xu', 8e5)
+    Car_H_cost_D.add_cost(Cost_RoadBoundary_top, 'x', 8e5)
+    Car_H_cost_D.add_cost(Cost_RoadBoundary_bottom, 'x', 8e5)
 
 
 
