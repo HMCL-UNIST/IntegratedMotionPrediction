@@ -10,6 +10,9 @@ The algorithm combines:
   -  A hierarchical prediction strategy that integrates data-driven human internal state inference with planning-based human motion prediction
   -  An Active motion planning algorithm for the autonomous vehicle to ensure safety against uncertain human motions
 
+## Conference Proceeding
+Y. Nam and C. Kwon, “Integrated Data-driven Inference and Planning-based Human Motion Prediction for Safe Human-Robot Interaction”, ICRA 2024: International Conference on Robotics and Automation, Yokohama, Japan, May 2024
+
 ## How to train inference module
 1. Generate human driving data for training  <br/>
   -> python ./gen_human_data.py <br/>
