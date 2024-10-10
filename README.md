@@ -11,7 +11,7 @@ The algorithm combines:
   -  An Active motion planning algorithm for the autonomous vehicle to ensure safety against uncertain human motions
 
 ## Conference Proceeding
-Y. Nam and C. Kwon, “Integrated Data-driven Inference and Planning-based Human Motion Prediction for Safe Human-Robot Interaction”, ICRA 2024: International Conference on Robotics and Automation, Yokohama, Japan, May 2024
+Y. Nam and C. Kwon, “Integrated Data-driven Inference and Planning-based Human Motion Prediction for Safe Human-Robot Interaction”, ICRA 2024: International Conference on Robotics and Automation, Yokohama, Japan, May 2024 [(Link)](https://ieeexplore.ieee.org/abstract/document/10611239) 
 
 ## How to train inference module
 1. Generate human driving data for training  <br/>
